@@ -2,6 +2,8 @@ package com.example.DaggerheartCreator.model;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "characters")
 public class Character {
@@ -22,6 +24,23 @@ public class Character {
     @JoinColumn(name = "community_id")
     private Community community;
 
+    // Player chooses a class for their character
+    @ManyToOne
+    @JoinColumn(name = "character_class_id")
+    private CharacterClass characterClass;
+
+    // Player chooses a subclass for their character
+    @ManyToOne
+    @JoinColumn(name = "subclass_id")
+    private Subclass subclass;
+
+    @ManyToMany
+    @JoinTable(
+            name = "character_ability",
+            joinColumns = @JoinColumn(name = "character_id"),
+            inverseJoinColumns = @JoinColumn(name = "ability_id"))
+    private Set<DomainCards> learnedDomainCards;
+
     private int agility;
     private int strength;
     private int finesse;
@@ -40,30 +59,38 @@ public class Character {
     private int damage_threshold_low;
     private int damage_threshold_high;
 
+    private int level;
+    private int experience;
+
     public Character() {
     }
 
-    public Character(Long id, String name, Ancestry ancestry, Domain domain, Community community, int agility, int strength, int finesse, int instinct, int presence, int knowledge, int evasion, int armor, int damage_threshold_low, int damage_threshold_high, int maxHp, int currentHp, int hope, int maxStress, int currentStress) {
+    public Character(Long id, String name, Ancestry ancestry, Domain domain, Community community, CharacterClass characterClass, Subclass subclass, Set<DomainCards> learnedDomainCards, int agility, int strength, int finesse, int instinct, int presence, int knowledge, int maxHp, int currentHp, int hope, int maxStress, int currentStress, int evasion, int armor, int damage_threshold_low, int damage_threshold_high, int level, int experience) {
         this.id = id;
         this.name = name;
         this.ancestry = ancestry;
         this.domain = domain;
         this.community = community;
+        this.characterClass = characterClass;
+        this.subclass = subclass;
+        this.learnedDomainCards = learnedDomainCards;
         this.agility = agility;
         this.strength = strength;
         this.finesse = finesse;
         this.instinct = instinct;
         this.presence = presence;
         this.knowledge = knowledge;
-        this.evasion = evasion;
-        this.armor = armor;
-        this.damage_threshold_low = damage_threshold_low;
-        this.damage_threshold_high = damage_threshold_high;
         this.maxHp = maxHp;
         this.currentHp = currentHp;
         this.hope = hope;
         this.maxStress = maxStress;
         this.currentStress = currentStress;
+        this.evasion = evasion;
+        this.armor = armor;
+        this.damage_threshold_low = damage_threshold_low;
+        this.damage_threshold_high = damage_threshold_high;
+        this.level = level;
+        this.experience = experience;
     }
 
     public String getName() {
@@ -216,5 +243,45 @@ public class Character {
 
     public void setCurrentStress(int currentStress) {
         this.currentStress = currentStress;
+    }
+
+    public CharacterClass getCharacterClass() {
+        return characterClass;
+    }
+
+    public void setCharacterClass(CharacterClass characterClass) {
+        this.characterClass = characterClass;
+    }
+
+    public Subclass getSubclass() {
+        return subclass;
+    }
+
+    public void setSubclass(Subclass subclass) {
+        this.subclass = subclass;
+    }
+
+    public Set<DomainCards> getLearnedDomainCards() {
+        return learnedDomainCards;
+    }
+
+    public void setLearnedDomainCards(Set<DomainCards> learnedDomainCards) {
+        this.learnedDomainCards = learnedDomainCards;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getExperience() {
+        return experience;
+    }
+
+    public void setExperience(int experience) {
+        this.experience = experience;
     }
 }
