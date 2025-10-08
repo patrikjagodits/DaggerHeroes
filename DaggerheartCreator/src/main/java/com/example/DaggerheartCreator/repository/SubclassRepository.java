@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface SubclassRepository extends JpaRepository<Subclass, Long> {
-    List<Subclass> findByDomainId(Long domainId);
+    List<Subclass> findByPlayerClassId(Long playerClassId);
 }

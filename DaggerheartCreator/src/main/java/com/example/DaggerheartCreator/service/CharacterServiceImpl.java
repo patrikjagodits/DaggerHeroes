@@ -55,16 +55,15 @@ public class CharacterServiceImpl implements CharacterService{
         newCharacter.setLevel(1);
         newCharacter.setExperience(2);
 
-        // Let’s assume every character starts with 10 HP and 5 Stress.
-        newCharacter.setMaxHp(10);
-        newCharacter.setCurrentHp(10);
+        // Let’s assume every character starts with 5 HP and 5 Stress.
+        newCharacter.setMaxHp(5);
+        newCharacter.setCurrentHp(0);
         newCharacter.setMaxStress(5);
         newCharacter.setCurrentStress(0);
 
         // The class may provide bonuses.
         if (characterClass.getName().equals("Guardian")) {
             newCharacter.setMaxHp(newCharacter.getMaxHp() + 2); // A Guardian kap +2 HP-t
-            newCharacter.setCurrentHp(newCharacter.getCurrentHp() + 2);
         }
 
         // 4. Save the populated, new character to the database using the repository.

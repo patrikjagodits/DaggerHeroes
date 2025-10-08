@@ -1,7 +1,12 @@
 package com.example.DaggerheartCreator.controller;
 
+import com.example.DaggerheartCreator.dto.CharacterCreationRequest;
 import com.example.DaggerheartCreator.model.Character;
 import com.example.DaggerheartCreator.repository.CharacterRepository;
+import com.example.DaggerheartCreator.service.CharacterService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,22 +15,18 @@ import java.util.List;
 @RequestMapping("/api/characters")
 public class CharacterController {
 
-    private final CharacterRepository characterRepository;
+    private final CharacterService characterService;
 
-    public CharacterController(CharacterRepository characterRepository){
-        this.characterRepository = characterRepository;
+    @Autowired
+    public CharacterController(CharacterService characterService){
+        this.characterService = characterService;
     }
 
-    // Get all characters
-    @GetMapping
-    public List<Character> getAllCharacters() {
-        return characterRepository.findAll();
-    }
-
-    // Create a new character
     @PostMapping
-    public Character createCharacter(@RequestBody Character character) {
-        return characterRepository.save(character);
+    public ResponseEntity<Character> createCharacter(@RequestBody CharacterCreationRequest request){
+        Character createdCharacter = characterService.createCharacter(request);
+
+        return new ResponseEntity<>(createdCharacter, HttpStatus.CREATED);
     }
 
 }
