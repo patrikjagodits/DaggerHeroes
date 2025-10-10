@@ -2,9 +2,22 @@ export interface CharacterClass {
     id: number;
     name: string;
     description: string;
-    // Other fields if needed
 }
 
-// For later:
-// export interface Subclass { ... }
-// export interface Ancestry { ... }
+export interface Subclass {
+    id: number;
+    name: string;
+    description: string;
+}
+
+export interface Ancestry {
+    id: number;
+    name: string;
+    description: string;
+}
+
+export interface Community {
+    id: number;
+    name: string;
+    description: string;
+}
