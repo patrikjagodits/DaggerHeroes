@@ -40,7 +40,7 @@ public class GameDataController {
 
     @GetMapping("/subclasses/{classId}")
     public List<Subclass> getSubclassesForClass(@PathVariable Long classId) {
-        return subclassRepository.findByPlayerClassId(classId);
+        return subclassRepository.findByCharacterClassId(classId);
     }
 
     @GetMapping("/ancestries")

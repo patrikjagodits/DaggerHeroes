@@ -1,5 +1,6 @@
 package com.example.DaggerheartCreator.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class CharacterClass {
     private String description;
 
     @OneToMany(mappedBy = "characterClass")
+    @JsonManagedReference
     private List<Subclass> subclasses;
 
     @ManyToMany

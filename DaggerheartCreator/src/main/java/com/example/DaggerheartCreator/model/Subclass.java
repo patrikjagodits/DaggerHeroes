@@ -1,5 +1,6 @@
 package com.example.DaggerheartCreator.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,6 +14,7 @@ public class Subclass {
 
     @ManyToOne
     @JoinColumn(name = "character_class_id")
+    @JsonBackReference
     private CharacterClass characterClass;
 
     public String getName() {

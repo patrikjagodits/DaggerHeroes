@@ -6,8 +6,8 @@ INSERT INTO character_class (name, description) VALUES ('Rogue', 'A cunning spec
 INSERT INTO character_class (name, description) VALUES ('Wizard', 'A powerful master of arcane arts.');
 
 -- Add subclasses, making sure the player_class_id matches the IDs created above (usually 1, 2, 3...)
-INSERT INTO subclass (name, description, player_class_id) VALUES ('Gladiator', 'A warrior who fights for spectacle.', 1);
-INSERT INTO subclass (name, description, player_class_id) VALUES ('Thief', 'A rogue who excels at infiltration.', 2);
+INSERT INTO subclass (name, description, character_class_id) VALUES ('Gladiator', 'A warrior who fights for spectacle.', 1);
+INSERT INTO subclass (name, description, character_class_id) VALUES ('Thief', 'A rogue who excels at infiltration.', 2);
 
 -- Add ancestries
 INSERT INTO ancestry (name, description) VALUES ('Human', 'Adaptable and resilient.');
