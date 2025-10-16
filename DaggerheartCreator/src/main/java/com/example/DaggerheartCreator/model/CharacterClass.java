@@ -26,6 +26,14 @@ public class CharacterClass {
             inverseJoinColumns = @JoinColumn(name = "domain_id"))
     private Set<Domain> domains;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -57,4 +65,5 @@ public class CharacterClass {
     public void setDomains(Set<Domain> domains) {
         this.domains = domains;
     }
+
 }

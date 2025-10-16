@@ -21,9 +21,7 @@ export function ClassSelection({ onNext }: ClassSelectionProps) {
     }, []);
 
     const handleSelectClass = (classId: string) => {
-        console.log("Class selected with ID:", classId);
         const selectedClass = classes.find(c => c.id === parseInt(classId));
-        console.log("Found class object:", selectedClass);
         if (selectedClass) {
             // Update the global state with the selected class
             setCharacterData(prevData => ({ ...prevData, characterClass: selectedClass }));
